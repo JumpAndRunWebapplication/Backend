@@ -37,12 +37,13 @@ public class UserRegistrationService {
     }
 
     public User findUserByUsername(String username) throws Exception {
-        User fetchedUser = userRegistrationRepository.findUserByUsername(username);
-        if (fetchedUser == null) {
-            throw new BadRequestException("User not found");
-        } else {
-            return fetchedUser;
-        }
+//        User fetchedUser = userRegistrationRepository.findUserByUsername(username);
+//        if (fetchedUser == null) {
+//            throw new BadRequestException("User not found");
+//        } else {
+//            return fetchedUser;
+//        }
+        return userRegistrationRepository.findUserByUsername(username);
     }
 
     public User saveUser(User user) throws Exception {
