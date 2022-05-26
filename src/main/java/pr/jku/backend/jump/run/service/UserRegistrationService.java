@@ -77,7 +77,11 @@ public class UserRegistrationService {
 
     public User addScore(String username, int score) throws Exception {
         User fetchUser = this.findUserByUsername(username);
+        if (username == "" || username == null) {
+            System.out.println("ERROR!");
+        }
         int currentScore = fetchUser.getScore() + score;
+        System.out.println(currentScore);
 
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));

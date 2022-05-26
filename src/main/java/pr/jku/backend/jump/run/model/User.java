@@ -18,7 +18,7 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private int score;
+    private Integer score;
     private Date registrationDate;
     private Date lastLogin;
 
