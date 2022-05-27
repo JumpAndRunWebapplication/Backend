@@ -74,7 +74,6 @@ public class UserRegistrationController {
             System.err.println("No authorization-header set or invalid jwtToken provided.");
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        System.out.println("test");
         String username = JwtUtils.getUsernameFromJwtToken(jwtToken);
         User fetchedUser = this.userRegistrationService.findUserByUsername(username);
         return new ResponseEntity<>(fetchedUser, HttpStatus.OK);

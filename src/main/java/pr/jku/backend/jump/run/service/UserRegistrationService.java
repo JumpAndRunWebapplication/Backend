@@ -26,7 +26,11 @@ public class UserRegistrationService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    // encrypts the password with the use of Base64
+    /**
+     * encrypts the password with the use of Base64
+     * @param password
+     * @return
+     */
     public String convertToEncrypt(String password) {
         if (password.isEmpty()){
             return null;
@@ -36,6 +40,12 @@ public class UserRegistrationService {
         }
     }
 
+    /**
+     * searches for user by username in mongoDB database
+     * @param username
+     * @return
+     * @throws Exception
+     */
     public User findUserByUsername(String username) throws Exception {
 //        User fetchedUser = userRegistrationRepository.findUserByUsername(username);
 //        if (fetchedUser == null) {
@@ -46,6 +56,13 @@ public class UserRegistrationService {
         return userRegistrationRepository.findUserByUsername(username);
     }
 
+    /**
+     * Checks if user with the same username already exists and throws exception if true;
+     * Creates new user-document in mongoDB database if username does not exist
+     * @param user
+     * @return
+     * @throws Exception
+     */
     public User saveUser(User user) throws Exception {
         if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null) {
             throw new BadRequestException("Bad request!");
@@ -58,6 +75,13 @@ public class UserRegistrationService {
         }
     }
 
+    /**
+     * searches for user with the given username and password
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
     public User fetchUserByUsernameAndPassword(String username, String password) throws Exception {
         if (username == null || password == null) {
             throw new BadRequestException("Bad request!");
@@ -75,6 +99,13 @@ public class UserRegistrationService {
         }
     }
 
+    /**
+     * adds a score to the current score of the user
+     * @param username
+     * @param score
+     * @return
+     * @throws Exception
+     */
     public User addScore(String username, int score) throws Exception {
         User fetchUser = this.findUserByUsername(username);
         if (username == "" || username == null) {
